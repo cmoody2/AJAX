@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Basic AJAX Demo</title>
+		<link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="main">
+			<h2>Get The Latest Content:</h2>
+			<div class='content' id="content">
+				<input type="button" class="button" value="Get Content" id="btn_content" onclick="getContent();"/>
+			</div>
+		<script type="text/javascript">
+			
+			// Step 1: setup the XML http request object
+			var ajax = new XMLHttpRequest();                                      //this sets up a new XMLHttpRequest object and assigns it the variable ajax for easier referencing
+			
+			// Step 2: prepare the open ajax request
+			ajax.open('GET', 'content.html');										// apply the open method to our request with parameters 'GET(used to get back info from server)' and the file address we want to get 'content.html'
+			
+			// Step 3: define the ajax response callback method
+			ajax.onreadystatechange = function() {									// this creates a function that executes whenever the ready state changes
+				if (ajax.readyState == 4) {													//if callback is successful aka readystate 4, then..
+					document.getElementById('content').innerHTML = ajax.responseText;		//create method that will replace the content on HTML with id 'content' to the new content from our request	
+				}
+			}
+			
+			// Step 4: send the ajax request for data
+			function getContent() {														//creates a function that will initiates this process
+				ajax.send();																//empty as we are not sending only receiving										
+				document.getElementById('btn_content').style.display = 'none';				//create a method to replace the content of the button
+			}
+			
+			
+		</script>
+    </body>
+</html>
